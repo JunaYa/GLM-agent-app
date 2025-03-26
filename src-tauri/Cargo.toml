@@ -26,6 +26,12 @@ serde_json = "1"
 cocoa = "0.26.0"
 objc = "0.2.7"
 tauri-nspanel = { git = "https://github.com/ahkohd/tauri-nspanel", branch = "v2" }
+tracing = "0.1.41"
+strum_macros = "0.27.1"
+strum = "0.27.1"
 
 [features]
 cargo-clippy = []
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-positioner = { version = "2.0.0", features = ["tray-icon"] }

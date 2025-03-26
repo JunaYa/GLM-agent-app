@@ -11,14 +11,7 @@
   },
   "app": {
     "windows": [
-      {
-        "title": "app",
-        "width": 80,
-        "height": 80,
-        "center": true,
-        "decorations": false,
-        "fullscreen": false
-      }
+      
     ],
     "security": {
       "csp": "default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'; connect-src ipc: http://ipc.localhost"

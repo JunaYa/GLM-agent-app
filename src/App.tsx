@@ -1,23 +1,26 @@
+import { Route } from "react-router-dom";
+import { Routes } from "react-router-dom";
 import "./App.css";
-import { getCurrentWindow } from "@tauri-apps/api/window";
+import Home from "./pages/home";
+import RootLayout from "./layout";
+import Task from "./pages/task";
+import Index from "./pages/index";
 
-function App() {
-  const appWindow = getCurrentWindow();
-
-
-  function handleMouseDown(e: React.MouseEvent<HTMLHeadingElement>) {
-    if (e.buttons === 1) {
-      // Primary (left) button
-      e.detail === 2
-        ? appWindow.toggleMaximize() // Maximize on double click
-        : appWindow.startDragging(); // Else start dragging
-    }
-  }
-
+export default function App() {
   return (
-    <main className="container" onMouseDown={handleMouseDown}>
-    </main>
+    <Routes>
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Index />} />
+        <Route path="index" element={<Index />} />
+        <Route path="home" element={<Home />} />
+        <Route path="task" element={<Task />} />
+
+        {/* Using path="*"" means "match anything", so this route
+              acts like a catch-all for URLs that we don't have explicit
+              routes for. */}
+        {/* <Route path="*" element={<NoMatch />} /> */}
+      </Route>
+    </Routes>
   );
 }
 
-export default App;
