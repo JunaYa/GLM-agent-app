@@ -1,6 +1,5 @@
-use tauri::{AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
+use tauri::{utils::config::WindowEffectsConfig, window::Effect, AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
 use tauri_nspanel::ManagerExt;
-
 use crate::panel;
 
 const HOME_WINDOW: &str = "home";
@@ -13,9 +12,15 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
                 .title("GLM")
                 .decorations(false)
                 .visible(true)
+                .transparent(true)
                 .skip_taskbar(true)
                 .shadow(false)
                 .resizable(false)
+                .effects(WindowEffectsConfig {
+                    effects: vec![],
+                    radius: Some(80.0),
+                    ..Default::default()
+                })
                 .inner_size(80.0, 80.0);
 
         let window = window.build().expect("Unable to build startup window");
@@ -47,7 +52,7 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
 }
 
 pub fn show_home_window(app: &AppHandle) {
-    let window = get_home_window(app);
+    let _ = get_home_window(app);
     let panel = app.get_webview_panel(HOME_WINDOW).unwrap();
     panel.show();
 }
