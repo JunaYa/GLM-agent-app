@@ -1,10 +1,9 @@
-use tauri::{AppHandle, Manager, WebviewWindow};
-use tauri_nspanel::{cocoa::appkit::NSWindowCollectionBehavior, panel_delegate, WebviewWindowExt};
 
 mod cmd;
 mod menu;
 mod window;
 mod panel;
+mod constants;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -20,6 +19,11 @@ pub fn run() {
         .setup(|app| {
             // Set activation poicy to Accessory to prevent the app icon from showing on the dock
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+
+            let app_handle = app.handle();
+            let window = window::get_home_window(&app_handle);
+            panel::init_home_panel(&app_handle, window);
+            panel::show_home_panel(&app_handle);
 
             menu::create_tray(app)?;
 

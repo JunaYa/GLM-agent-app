@@ -1,10 +1,11 @@
 
 use tauri::{AppHandle, WebviewWindow};
 use tauri_nspanel::{
-    cocoa::appkit::NSWindowCollectionBehavior, panel_delegate, WebviewWindowExt,
+    cocoa::appkit::NSWindowCollectionBehavior, panel_delegate, ManagerExt, WebviewWindowExt
 };
+use crate::constants::HOME_WINDOW;
 
-pub fn init(app_handle: &AppHandle, window: WebviewWindow) {
+pub fn init_home_panel(app_handle: &AppHandle, window: WebviewWindow) {
 
   let panel = window.to_panel().unwrap();
 
@@ -52,4 +53,22 @@ pub fn init(app_handle: &AppHandle, window: WebviewWindow) {
   );
 
   panel.set_delegate(delegate);
+}
+
+pub fn show_home_panel(app: &AppHandle) {
+    let panel = app.get_webview_panel(HOME_WINDOW).unwrap();
+    panel.show();
+}
+
+pub fn hide_home_panel(app: &AppHandle) {
+    let panel = app.get_webview_panel(HOME_WINDOW).unwrap();
+    panel.order_out(None);
+}
+
+pub fn close_home_panel(handle: AppHandle) {
+  let panel = handle.get_webview_panel(HOME_WINDOW).unwrap();
+
+  panel.set_released_when_closed(true);
+
+  panel.close();
 }

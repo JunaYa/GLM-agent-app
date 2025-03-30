@@ -1,8 +1,6 @@
-use tauri::{utils::config::WindowEffectsConfig, window::Effect, AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
-use tauri_nspanel::ManagerExt;
-use crate::panel;
+use tauri::{utils::config::WindowEffectsConfig, AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
+use crate::constants::HOME_WINDOW;
 
-const HOME_WINDOW: &str = "home";
 pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
     if let Some(window) = app.get_webview_window(HOME_WINDOW) {
         window
@@ -11,7 +9,7 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
             WebviewWindowBuilder::new(app, HOME_WINDOW, WebviewUrl::App("/home".into()))
                 .title("GLM")
                 .decorations(false)
-                .visible(true)
+                .visible(false)
                 .transparent(true)
                 .skip_taskbar(true)
                 .shadow(false)
@@ -45,27 +43,21 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
             }
         }
 
-        panel::init(app, window.clone());
-
         window
     }
 }
 
 pub fn show_home_window(app: &AppHandle) {
-    let _ = get_home_window(app);
-    let panel = app.get_webview_panel(HOME_WINDOW).unwrap();
-    panel.show();
+    let window = get_home_window(app);
+    window.show();
 }
 
 pub fn hide_home_window(app: &AppHandle) {
-    let panel = app.get_webview_panel(HOME_WINDOW).unwrap();
-    panel.order_out(None);
+    let window = get_home_window(app);
+    window.hide();
 }
 
-fn close_home_window(handle: AppHandle) {
-  let panel = handle.get_webview_panel(HOME_WINDOW).unwrap();
-
-  panel.set_released_when_closed(true);
-
-  panel.close();
+pub fn close_home_window(handle: AppHandle) {
+  let window = handle.get_webview_window(HOME_WINDOW).unwrap();
+  window.close();
 }
