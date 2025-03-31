@@ -1,9 +1,8 @@
-
 use tauri::{AppHandle, WebviewWindow};
 use tauri_nspanel::{
     cocoa::appkit::NSWindowCollectionBehavior, panel_delegate, ManagerExt, WebviewWindowExt
 };
-use crate::constants::HOME_WINDOW;
+use crate::{constants::HOME_WINDOW, window};
 
 pub fn init_home_panel(app_handle: &AppHandle, window: WebviewWindow) {
 

@@ -22,26 +22,6 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
                 .inner_size(80.0, 80.0);
 
         let window = window.build().expect("Unable to build startup window");
-        #[cfg(target_os = "macos")]
-        {
-            use cocoa::appkit::{NSColor, NSWindow};
-            use cocoa::base::{id, nil};
-
-            let ns_window = window.ns_window().unwrap() as id;
-            unsafe {
-                // macOS: Handle multiple spaces correctly
-                ns_window.setCollectionBehavior_(cocoa::appkit::NSWindowCollectionBehavior::NSWindowCollectionBehaviorMoveToActiveSpace);
-
-                let bg_color = NSColor::colorWithRed_green_blue_alpha_(
-                    nil,
-                    33.0 / 255.0,
-                    54.0 / 255.0,
-                    201.0 / 255.0,
-                    0.0,
-                );
-                ns_window.setBackgroundColor_(bg_color);
-            }
-        }
 
         window
     }

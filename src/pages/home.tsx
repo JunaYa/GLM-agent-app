@@ -10,7 +10,6 @@ function Home() {
 
   return (
     <main className="container" onMouseDown={handleMouseDown}>
-      <div className="circle"></div>
     </main>
   );
 }

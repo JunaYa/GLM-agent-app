@@ -8,7 +8,7 @@ use tauri::{
 };
 use tracing::info;
 
-use crate::window;
+use crate::panel;
 
 #[derive(Debug, Display, EnumString)]
 #[allow(non_camel_case_types, clippy::upper_case_acronyms)]
@@ -109,11 +109,11 @@ fn handle_tray_menu_events(app: &AppHandle, event: MenuEvent) {
     match menu_id {
         MenuID::START_TASK => {
             info!("Start Task");
-            window::show_home_window(&app);
+            panel::show_task_panel(&app);
         }
         MenuID::STOP_TASK => {
             info!("Stop Task");
-            window::hide_home_window(&app);
+            panel::hide_task_panel(&app);
         }
         MenuID::EXIT => {
             info!("Exit");
