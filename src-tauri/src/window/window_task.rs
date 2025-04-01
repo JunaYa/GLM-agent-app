@@ -23,11 +23,12 @@ pub fn get_task_window(app: &AppHandle) -> WebviewWindow {
 
         let window = window.build().expect("Unable to build startup window");
 
+        const WINDOW_HEIGHT_OFFSET: u32 = 6;
         if let Some(monitor) = find_monitor(&window) {
             let screen_size = monitor.size();
             let size = PhysicalSize {
                 width: screen_size.width,
-                height: screen_size.height,
+                height: screen_size.height - WINDOW_HEIGHT_OFFSET,
             };
             println!("size: {:?}", size);
             let _ = window.set_size(tauri::Size::Physical(size));

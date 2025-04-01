@@ -8,8 +8,7 @@ const Task = () => {
     appWindow.startDragging()
   }
   
-  return <div className="h-full w-full border-2 border-red-500" >
-    <div className="w-[100px] h-[100px] bg-blue-500 cursor-grab" onMouseDown={handleMouseDown}></div>
+  return <div className="h-full w-full rounded-lg animate-glow" onMouseDown={handleMouseDown}>
   </div>;
 };
 

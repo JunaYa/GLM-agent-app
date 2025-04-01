@@ -1,4 +1,5 @@
-use tauri::{utils::config::WindowEffectsConfig, AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
+use tauri::{AppHandle, Manager, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
+use tauri_plugin_positioner::{Position, WindowExt};
 use crate::constants::HOME_WINDOW;
 
 pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
@@ -14,14 +15,11 @@ pub fn get_home_window(app: &AppHandle) -> WebviewWindow {
                 .skip_taskbar(true)
                 .shadow(false)
                 .resizable(false)
-                .effects(WindowEffectsConfig {
-                    effects: vec![],
-                    radius: Some(80.0),
-                    ..Default::default()
-                })
                 .inner_size(80.0, 80.0);
 
         let window = window.build().expect("Unable to build startup window");
+
+        let _ = window.move_window(Position::RightCenter);
 
         window
     }
