@@ -8,7 +8,7 @@ use tauri::{
 };
 use tracing::info;
 
-use crate::panel;
+use crate::{constants::TASK_WINDOW, panel};
 
 #[derive(Debug, Display, EnumString)]
 #[allow(non_camel_case_types, clippy::upper_case_acronyms)]

@@ -1,8 +1,11 @@
+/**
+ * global home panel, circle max level
+ */
 use tauri::{AppHandle, WebviewWindow};
 use tauri_nspanel::{
     cocoa::appkit::NSWindowCollectionBehavior, panel_delegate, ManagerExt, WebviewWindowExt
 };
-use crate::{constants::HOME_WINDOW, window};
+use crate::constants::HOME_WINDOW;
 
 pub fn init_home_panel(app_handle: &AppHandle, window: WebviewWindow) {
 
