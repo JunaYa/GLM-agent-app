@@ -14,7 +14,9 @@ pub fn run() {
             cmd::show_panel,
             cmd::hide_panel,
             cmd::close_panel,
-            cmd::start_task,
+            cmd::show_task_panel,
+            cmd::hide_task_panel,
+            cmd::close_task_panel,
         ])
         .setup(|app| {
             // Set activation poicy to Accessory to prevent the app icon from showing on the dock
