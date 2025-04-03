@@ -1,7 +1,25 @@
-# Tauri + React + Typescript
+# GLM Assistant
+A global hotkey that summons a task panel, capable of full-screen display.
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+Can be used for AI agent applications.
 
-## Recommended IDE Setup
+## Demo Video
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+<video src="./video.mov" controls />
+
+## Running the Application
+
+```bash
+pnpm i
+npm tauri dev
+```
+
+## Building for Production
+
+```bash
+pnpm tauri build
+```
+
+
+
+
