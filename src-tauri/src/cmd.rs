@@ -42,11 +42,10 @@ pub fn hide_task_panel(handle: AppHandle) {
 }
 
 
-
 #[tauri::command]
 pub fn close_task_panel(handle: AppHandle) {
     let panel = handle.get_webview_panel(TASK_WINDOW).unwrap();
-    
+
     panel.set_released_when_closed(true);
 
     panel.close();

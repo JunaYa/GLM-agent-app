@@ -30,8 +30,8 @@ pub fn get_task_window(app: &AppHandle) -> WebviewWindow {
                 width: screen_size.width,
                 height: screen_size.height - WINDOW_HEIGHT_OFFSET,
             };
-            println!("size: {:?}", size);
             let _ = window.set_size(tauri::Size::Physical(size));
+            let _ = window.set_ignore_cursor_events(true);
             // sleep 0.3
             let window = window.clone();
             tauri::async_runtime::spawn(async move {
